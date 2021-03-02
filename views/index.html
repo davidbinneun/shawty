@@ -5,11 +5,11 @@
     <title>Shawty</title>
     <link rel="icon" type="image/png" href="../public/favicon.ico" />
     <link href="./public/style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="./public/hint.css/hint.css" />
+    <link href="./node_modules/hint.css/hint.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
-    <h1>Shawty 🐫 URL Shortner</h1>
+    <h1 >Shawty 🐫 URL Shortner</h1>
     <main>
       <section>
         <form action="api/shorturl/new" method="POST">
@@ -20,7 +20,7 @@
               name="url"
               placeholder="Paste URL"
             />
-            <input id="submit" type="submit" value="🐪" class="hint--bottom" aria-label="Thank you!" />
+            <div class="tooltip"><input id="submit" type="submit" value="🐪"><span class="tooltiptext">Shorten</span></input></div>
           </fieldset>
         </form>
       </section>
