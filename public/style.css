@@ -9,33 +9,56 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   width: 100vw;
   height: 100vh;
-  background-color: #3d998a;
-  background-image: linear-gradient(140deg, #0f5858 0%, #3d998a 100%);
+  background-color: #305F72 ;
+  background-image: linear-gradient(140deg, #305F72  0%, #568EA6 100%);
+}
+
+h1 {
+  color: white;
+  font-size: 48px;
 }
 
 main {
-  width: 50%;
-}
-
-fieldset {
-  all: unset;
+  width: 100%;
 }
 
 section {
   all: unset;
+  width: 100%;
+}
+
+form {
+  /* all: unset; */
+  width: 100%;
+}
+
+fieldset {
+  all: unset;
+  width: 100%;
 }
 
 input {
   all: unset;
-  background-color: white;
-  border-radius: 10px;
+  height: 50px;
 }
 
-form {
-  all: unset;
+#submit {
+  border-radius: 20px;
+  padding: 0px 10px;
+  background-color: #F18C8E;
+  border: 2px solid #ca7577;
 }
+
+#url_input {
+  width: 40vw;
+  background-color: #F1D1B5;
+  border: 2px solid #F0B7A4;
+  border-radius: 20px;
+}
+
 
 legend {
   all: unset;
