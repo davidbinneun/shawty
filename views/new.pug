@@ -8,9 +8,9 @@ html
     h1 Shawty 🐫 URL Shortener
     main
       section
-        form(action="api/shorturl/new" method="POST")
+        form
           fieldset
-            input(id="url_input" type='url' value=id autofocus)
+            input(id="url_input" type='url' value=id autocomplete="off")
             div(class="tooltip")
               input(id="submit" onclick="copyToClipboard()" value="📋")
               span(class="tooltiptext") Copy

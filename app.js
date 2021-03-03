@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 
 app.post("/api/shorturl/new", async (req, res) => {
   let newID = await DataBase.addURL(req.body);
-  res.render('new', { title: 'Hey', id: "http://" + req.get('host') + "/" + newID});
+  res.render('new', { id: "http://" + req.get('host') + "/" + newID});
   res.status(200);
 });
 
@@ -28,7 +28,7 @@ app.get("/:id", async (req, res) => {
 app.get("/api/statistic/:id", async (req, res) => {
   let item = await DataBase.getItem(req.params.id);
   if (item == null) res.sendStatus(404);
-  else res.render('statistic', { title: 'Hey', creationDate: item.creationDate, originalUrl: item.originalUrl, redirectCount: item.redirectCount, id: item.id });
+  else res.render('statistic', {creationDate: item.creationDate, originalUrl: item.originalUrl, redirectCount: item.redirectCount, id: item.id });
 });
 
 module.exports = app;

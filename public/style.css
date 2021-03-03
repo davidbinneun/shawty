@@ -18,12 +18,13 @@ body {
 
 h1 {
   color: white;
-  font-size: 3vw;
+  font-size: calc(16px + 2vw);
   user-select: none;
   text-shadow: 0px 1px black;
 }
 
 main {
+  all: unset;
   width: 100%;
 }
 
@@ -33,13 +34,17 @@ section {
 }
 
 form {
-  /* all: unset; */
+  all: unset;
   width: 100%;
 }
 
 fieldset {
   all: unset;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 input {
@@ -49,6 +54,7 @@ input {
 }
 
 #submit {
+  width: 50px;
   border-radius: 20px;
   padding: 0 10px;
   background-color: #F18C8E;
@@ -58,17 +64,17 @@ input {
 }
 
 #submit:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   cursor: pointer;
 }
 
 #url_input {
   width: 40vw;
+  min-width: 350px;
   background-color: #F1D1B5;
   border: 2px solid #F0B7A4;
   border-radius: 20px;
 }
-
 
 legend {
   all: unset;
@@ -79,6 +85,9 @@ table {
   text-align: center;
   width: 50%;
   height: 54px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
 }
 
 .tooltip {
