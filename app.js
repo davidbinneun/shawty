@@ -2,25 +2,21 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const dir = process.env.NODE_ENV === 'test' ? './test':'./b';
-const DataBase = require('./database');
+const DataBase = require('./backend/database.js');
 
 app.set('view engine', 'pug');
-
 app.use(cors());
 app.use(express.urlencoded({extended: false}));
-
 app.use("/public", express.static(`./public`));
 
 app.get("/", (req, res) => {
-  // res.sendFile(__dirname + "/views/index.html");
   res.render('index');
 });
 
 app.post("/api/shorturl/new", async (req, res) => {
   let newID = await DataBase.addURL(req.body);
-  // res.sendFile(__dirname + "/views/new.html");
   res.render('new', { title: 'Hey', id: "http://" + req.get('host') + "/" + newID});
+  res.status(200);
 });
 
 app.get("/:id", async (req, res) => {

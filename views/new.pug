@@ -1,16 +1,23 @@
-<html>
-  <head>
-    <title>Shawty</title>
-    <link rel="icon" type="image/png" href="../public/favicon.ico" />
-    <link href='../../public/style.css' rel="stylesheet" type="text/css" />
-  </head>
+html
+  head
+    title Shawty
+    link(rel="icon" type="image/png" href="../public/favicon.ico")
+    link(href='../../public/style.css' rel="stylesheet" type="text/css")
 
-  <body>
-    <h1>Shawty 🐫 URL Shortener</h1>
-    <main>
-      <section>
-        a(href=id) Copy link
-      </section>
-    </main>
-  </body>
-</html>
+  body
+    h1 Shawty 🐫 URL Shortener
+    main
+      section
+        form(action="api/shorturl/new" method="POST")
+          fieldset
+            input(id="url_input" type='url' value=id autofocus)
+            div(class="tooltip")
+              input(id="submit" onclick="copyToClipboard()" value="📋")
+              span(class="tooltiptext") Copy
+    script.
+      function copyToClipboard(){
+        var copyText = document.getElementById("url_input");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+        document.execCommand("copy");
+      }

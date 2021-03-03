@@ -1,9 +1,21 @@
 html
   head
-    title= title
-    link(rel='stylesheet', href='../../public/style.css', type='text/css')
+    title Shawty
+    link(rel="icon" type="image/png" href="../public/favicon.ico")
+    link(href="../../public/style.css" rel="stylesheet" type="text/css")
+
   body
-    h1= creationDate
-    h1= originalUrl
-    h1= redirectCount
-    h1= id
+    h1 Shawty 🐫 URL Shortener
+    main
+      table
+        tr
+          th Creation Date 
+          th Original URL
+          th ID
+          th Times Used
+        tr
+          td= creationDate
+          td= originalUrl
+          td= id
+          td= redirectCount
+  
