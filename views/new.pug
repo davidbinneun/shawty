@@ -1,7 +1,7 @@
 html
   head
     title Shawty
-    link(rel="icon" type="image/png" href="../public/favicon.ico")
+    link(rel="icon" type="image/png" href="../../public/favicon.ico")
     link(href='../../public/style.css' rel="stylesheet" type="text/css")
 
   body
@@ -10,13 +10,13 @@ html
       section
         form
           fieldset
-            input(id="url_input" type='url' value=id autocomplete="off")
+            input(id="text_input" type='url' value=id autocomplete="off")
             div(class="tooltip")
               input(id="submit" onclick="copyToClipboard()" value="📋")
               span(class="tooltiptext") Copy
     script.
       function copyToClipboard(){
-        var copyText = document.getElementById("url_input");
+        var copyText = document.getElementById("text_input");
         copyText.select();
         copyText.setSelectionRange(0, 99999); /* For mobile devices */
         document.execCommand("copy");

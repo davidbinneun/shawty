@@ -1,7 +1,7 @@
 html
   head
     title Shawty
-    link(rel="icon" type="image/png" href="../public/favicon.ico")
+    link(rel="icon" type="image/png" href="../../public/favicon.ico")
     link(href='../../public/style.css' rel="stylesheet" type="text/css")
 
   body
@@ -10,7 +10,7 @@ html
       section
         form(action="api/shorturl/new" method="POST")
           fieldset
-            input(id="url_input" type="url" name="url" placeholder="Paste URL" autocomplete="off")
+            input(id="text_input" type="url" name="url" placeholder="Paste URL" autocomplete="off")
             div(class="tooltip")
               input(id="submit" type="submit" value="🐪")
               span(class="tooltiptext") Shorten

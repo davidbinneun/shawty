@@ -21,7 +21,7 @@ app.post("/api/shorturl/new", async (req, res) => {
 
 app.get("/:id", async (req, res) => {
   let redirectUrl = await DataBase.getOriginalUrl(req.params.id);
-  if (redirectUrl == null) res.sendStatus(404);
+  if (redirectUrl == null) res.render('404').sendStatus(404);
   else res.redirect(redirectUrl);
 });
 
