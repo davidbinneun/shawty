@@ -5,11 +5,10 @@
     <title>Shawty</title>
     <link rel="icon" type="image/png" href="../public/favicon.ico" />
     <link href="./public/style.css" rel="stylesheet" type="text/css" />
-    <link href="./node_modules/hint.css/hint.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
-    <h1 >Shawty 🐫 URL Shortner</h1>
+    <h1>Shawty 🐫 URL Shortener</h1>
     <main>
       <section>
         <form action="api/shorturl/new" method="POST">
@@ -18,11 +17,15 @@
               id="url_input"
               type="url"
               name="url"
-              placeholder="Paste URL"
+              placeholder="Paste URL" 
+              autocomplete="off"
             />
-            <div class="tooltip"><input id="submit" type="submit" value="🐪"><span class="tooltiptext">Shorten</span></input></div>
+            <div class="tooltip"><input id="submit" type="submit" value="🐪" ><span class="tooltiptext">Shorten</span></input></div>
           </fieldset>
         </form>
+      </section>
+      <section>
+
       </section>
     </main>
   </body>

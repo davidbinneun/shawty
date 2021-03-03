@@ -77,6 +77,8 @@ legend {
   position: relative;
   display: inline-block;
   outline: none;
+  user-select: none;
+  border-radius: 20px;
 }
 
 .tooltip .tooltiptext {
@@ -89,7 +91,7 @@ legend {
   padding: 5px 0px;
   position: absolute;
   z-index: 1;
-  top: 150%;
+  top: 125%;
   left: 50%;
   margin-left: -45px;
   font-size: 1em;

@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Shawty</title>
+    <link rel="icon" type="image/png" href="../public/favicon.ico" />
+    <link href="./public/style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <h1>Shawty 🐫 URL Shortener</h1>
+    <main>
+      <section>
+        <form action="api/shorturl/new" method="POST">
+          <fieldset>
+            <input id="url_input" type="url" name="url" placeholder="Paste URL" autocomplete="off" />
+            <div class="tooltip"><input id="submit" type="submit" value="🐪" /><span class="tooltiptext">Shorten</span></div>
+          </fieldset>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
