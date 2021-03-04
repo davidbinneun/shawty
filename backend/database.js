@@ -13,18 +13,18 @@ class DataBase {
     }
 
     // Receives URL, adds it to database and returns the id given to it
-    static async addURL(body){
+    static async addURL(url){
         await this.readAllData();
         
         // Check if URL exists in database
         for(let item of this.items){
-            if (body.url === item.originalUrl) {
+            if (url === item.originalUrl) {
                 return item.id; // URL exists, returns its id
             }
         }
 
         // If URL is new, add to database and return id
-        let newItem = {creationDate: Date.now(), redirectCount: 0, originalUrl: body.url, id: shortid.generate()};
+        let newItem = {creationDate: Date.now(), redirectCount: 0, originalUrl: url, id: shortid.generate()};
         this.items.push(newItem);
         fs.writeFile(databaseFile, JSON.stringify(this.items));
         return newItem.id;

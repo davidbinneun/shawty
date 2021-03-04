@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const shortid = require('shortid');
 const DataBase = require('./backend/database.js');
 
 app.set('view engine', 'pug');
@@ -9,26 +10,64 @@ app.use(cors());
 app.use(express.urlencoded({extended: false}));
 app.use("/public", express.static(`./public`));
 
+// Access the website
 app.get("/", (req, res) => {
   res.render('index');
 });
 
+// Create new shortened URL
 app.post("/api/shorturl/new", async (req, res) => {
-  let newID = await DataBase.addURL(req.body);
-  res.render('new', { id: "http://" + req.get('host') + "/" + newID});
-  res.status(200);
+  console.log(req.body);
+  if (!isValidURL(req.body.url) || req.body.url === undefined)
+    return res.status(400);
+
+  try {
+    let newID = await DataBase.addURL(req.body.url);
+    res.status(201).render('new', { id: "http://" + req.get('host') + "/" + newID});
+  } catch {
+    res.status(500).render('error', {statusCode: 500, message: "Internal server error"});
+  }
 });
 
+
+// Access shortened URL
 app.get("/:id", async (req, res) => {
-  let redirectUrl = await DataBase.getOriginalUrl(req.params.id);
-  if (redirectUrl == null) res.render('404').sendStatus(404);
-  else res.redirect(redirectUrl);
+  if (!shortid.isValid(req.params.id))
+    return res.status(400).render('error', {statusCode: 400, message: "Illegal request."});
+
+  try {
+    let redirectUrl = await DataBase.getOriginalUrl(req.params.id);
+
+    if (redirectUrl === null) 
+      return res.status(404).render('error', {statusCode: 404, message: "We don't have it here."});
+
+    res.redirect(redirectUrl);
+  } catch {
+    res.status(500).render('error', {statusCode: 500, message: "Internal server error."});
+  }
 });
 
+// Access statistics about a shortened URL
 app.get("/api/statistic/:id", async (req, res) => {
-  let item = await DataBase.getItem(req.params.id);
-  if (item == null) res.sendStatus(404);
-  else res.render('statistic', {creationDate: item.creationDate, originalUrl: item.originalUrl, redirectCount: item.redirectCount, id: item.id });
+  if (!shortid.isValid(req.params.id))
+    return res.status(400).render('error', {statusCode: 400, message: "Illegal request."});
+  
+  try {
+    let item = await DataBase.getItem(req.params.id);
+
+    if (item === null)
+      return res.status(404).render('error', {statusCode: 404, message: "We don't have it here."});
+    
+    else res.status(200).render('statistic', {creationDate: item.creationDate, originalUrl: item.originalUrl, redirectCount: item.redirectCount, id: item.id });
+  } catch {
+    res.status(500).render('error', {statusCode: 500, message: "Internal server error."});
+  }
 });
+
+// Receieves a URL, returns true if it's valid and false if not.
+function isValidURL(string) {
+  var res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+  return (res !== null)
+};
 
 module.exports = app;
