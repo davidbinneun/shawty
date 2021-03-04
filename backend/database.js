@@ -4,12 +4,12 @@ const databaseFile = process.env.NODE_ENV === 'test' ? './backend/testdata.json'
 const isUrl = require("is-valid-http-url");
 
 // Performs actions on the database file
-class DataBase {
+class DataBase { 
     static items = [];
 
     // Gets all data from the JSON file into the items array
     static async readAllData(){
-        const data = await fs.readFile(databaseFile, 'utf8' , err => { if (err) return;});
+        const data = await fs.readFile(databaseFile, 'utf8' , err => { if (err) return;}); // TODO remove callback
         this.items = JSON.parse(data);
     }
 
@@ -18,7 +18,7 @@ class DataBase {
         await this.readAllData();
 
         // Check if URL is legal
-        if (!isUrl(url)) return null;
+        if (!isUrl(url)) return null; // TODO take this out
         
         // Check if URL exists in database
         for(let item of this.items){
@@ -55,7 +55,7 @@ class DataBase {
                 return item;
             }
         }
-        return null;
+        return null; // TODO throw error incase of error
     }
 }
 
