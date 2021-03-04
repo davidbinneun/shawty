@@ -17,10 +17,6 @@ app.get("/", (req, res) => {
 
 // Create new shortened URL
 app.post("/api/shorturl/new", async (req, res) => {
-  console.log(req.body);
-  if (!isValidURL(req.body.url) || req.body.url === undefined)
-    return res.status(400);
-
   try {
     let newID = await DataBase.addURL(req.body.url);
     res.status(201).render('new', { id: "http://" + req.get('host') + "/" + newID});
@@ -63,11 +59,5 @@ app.get("/api/statistic/:id", async (req, res) => {
     res.status(500).render('error', {statusCode: 500, message: "Internal server error."});
   }
 });
-
-// Receieves a URL, returns true if it's valid and false if not.
-function isValidURL(string) {
-  var res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
-  return (res !== null)
-};
 
 module.exports = app;

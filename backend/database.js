@@ -1,6 +1,8 @@
-const shortid = require('shortid');
 const fs = require('fs').promises;
+const Item = require('./item.js');
+const isUrl = require("is-valid-http-url");
 const databaseFile = process.env.NODE_ENV === 'test' ? './backend/testdata.json':'./backend/data.json';
+
 
 // Performs actions on the database file
 class DataBase {
@@ -15,16 +17,15 @@ class DataBase {
     // Receives URL, adds it to database and returns the id given to it
     static async addURL(url){
         await this.readAllData();
-        
         // Check if URL exists in database
         for(let item of this.items){
             if (url === item.originalUrl) {
                 return item.id; // URL exists, returns its id
             }
         }
-
+        console.log(this.items);
         // If URL is new, add to database and return id
-        let newItem = {creationDate: Date.now(), redirectCount: 0, originalUrl: url, id: shortid.generate()};
+        let newItem = new Item(url);
         this.items.push(newItem);
         fs.writeFile(databaseFile, JSON.stringify(this.items));
         return newItem.id;
