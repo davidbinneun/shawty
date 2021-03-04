@@ -13,13 +13,13 @@ describe("Sending URL to the server", () => {
         const response = await request.post('/api/shorturl/new').type('form').send({url:"https://www.youtube.com/"});
         expect(response.status).toBe(201);
     });
-    // it("The URL is ", async () => {
-    //     const response = await request.post('/api/shorturl/new').type('form').send({url:"utubecom/?hl=iw&gl=IL"});
-    //     expect(response.status).toBe(400);
-    // });
+    it("The URL is illegal", async () => {
+        const response = await request.post('/api/shorturl/new').type('form').send({url:"utubecom/?hl=iw&gl=IL"});
+        expect(response.status).toBe(400);
+    });
     it("Corrupted file in server", async () => {
         await fs.writeFile("./backend/testdata.json", "[");
-        const response = await request.post('/api/shorturl/new').type('form').send({url:"https://www.youtube.com/?"});
+        const response = await request.post('/api/shorturl/new').type('form').send({url:"https://www.youtube.com/"});
         expect(response.status).toBe(500);
     });
 });

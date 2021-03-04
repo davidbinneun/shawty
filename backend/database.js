@@ -1,8 +1,6 @@
 const fs = require('fs').promises;
 const Item = require('./item.js');
-const isUrl = require("is-valid-http-url");
 const databaseFile = process.env.NODE_ENV === 'test' ? './backend/testdata.json':'./backend/data.json';
-
 
 // Performs actions on the database file
 class DataBase {
@@ -23,7 +21,6 @@ class DataBase {
                 return item.id; // URL exists, returns its id
             }
         }
-        console.log(this.items);
         // If URL is new, add to database and return id
         let newItem = new Item(url);
         this.items.push(newItem);
