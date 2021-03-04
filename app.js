@@ -3,7 +3,6 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const shortid = require('shortid');
-const isUrl = require("is-valid-http-url");
 const DataBase = require('./backend/database.js');
 
 app.set('view engine', 'pug');
@@ -18,12 +17,9 @@ app.get("/", (req, res) => {
 
 // Create new shortened URL
 app.post("/api/shorturl/new", async (req, res) => {
-  if (!isUrl(req.body.url)){
-    return res.sendStatus(400);
-  }
-
   try {
     let newID = await DataBase.addURL(req.body.url);
+    if (newID === null) return sendStatus(400);
     res.status(201).render('new', { id: "http://" + req.get('host') + "/" + newID});
   } catch {
     res.sendStatus(500);

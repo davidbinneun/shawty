@@ -1,6 +1,7 @@
 const fs = require('fs').promises;
 const Item = require('./item.js');
 const databaseFile = process.env.NODE_ENV === 'test' ? './backend/testdata.json':'./backend/data.json';
+const isUrl = require("is-valid-http-url");
 
 // Performs actions on the database file
 class DataBase {
@@ -15,6 +16,10 @@ class DataBase {
     // Receives URL, adds it to database and returns the id given to it
     static async addURL(url){
         await this.readAllData();
+
+        // Check if URL is legal
+        if (!isUrl(url)) return null;
+        
         // Check if URL exists in database
         for(let item of this.items){
             if (url === item.originalUrl) {
