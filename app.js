@@ -4,6 +4,7 @@ const cors = require("cors");
 const app = express();
 const shortid = require('shortid');
 const DataBase = require('./backend/database.js');
+const Item = require('./backend/item.js');
 
 app.set('view engine', 'pug');
 app.use(cors());
@@ -17,7 +18,11 @@ app.get("/", (req, res) => {
 
 // Create new shortened URL
 app.post("/api/shorturl/new", async (req, res) => {
+  if(!isUrl(req.body.url)) 
+  throw new Error;
   try {
+    if(!isUrl(req.body.url)) 
+      throw new Error
     let newID = await DataBase.addURL(req.body.url);
     if (newID === null) return sendStatus(400);
     res.status(201).render('new', { id: "http://" + req.get('host') + "/" + newID});
@@ -59,5 +64,6 @@ app.get("/api/statistic/:id", async (req, res) => {
     res.status(500).render('error', {statusCode: 500, message: "Internal server error."});
   }
 });
+
 
 module.exports = app;
