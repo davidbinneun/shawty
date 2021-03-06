@@ -12,6 +12,6 @@ A simple and responsive URL shortening service.
 - Custom error pages
 
 ## Resources used
-- [Pug rendering engine](https://pugjs.org/api/getting-started.html)'
+- [Pug rendering engine](https://pugjs.org/api/getting-started.html)
 - [shortid](https://www.npmjs.com/package/shortid)
 - [is-valid-http-url](https://www.npmjs.com/package/is-valid-http-url)
