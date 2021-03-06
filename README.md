@@ -9,6 +9,7 @@ A simple and responsive URL shortening service.
 - Random ID generation
 - Copy your new link easily
 - Dedicated statistic page for your URL at /api/statistic/:id
+- Custom error pages
 
 ## Resources used
 - [Pug rendering engine](https://pugjs.org/api/getting-started.html)'
