@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const shortid = require('shortid');
+const isUrl = require('is-valid-http-url');
 const DataBase = require('./backend/database.js');
 const Item = require('./backend/item.js');
 
@@ -19,12 +20,14 @@ app.get("/", (req, res) => {
 // Create new shortened URL
 app.post("/api/shorturl/new", async (req, res) => {
   if(!isUrl(req.body.url)) 
-  throw new Error;
+   return res.status(400).render('error', {statusCode: 400, message: "Illegal request."});
   try {
-    if(!isUrl(req.body.url)) 
-      throw new Error
-    let newID = await DataBase.addURL(req.body.url);
-    if (newID === null) return sendStatus(400);
+    console.log(req.body.url);
+    let dataBase = new DataBase();
+    console.log(dataBase);
+    let item = new Item(req.body.url);
+    console.log(item);
+    let newID = await dataBase.addItem(item);
     res.status(201).render('new', { id: "http://" + req.get('host') + "/" + newID});
   } catch {
     res.sendStatus(500);

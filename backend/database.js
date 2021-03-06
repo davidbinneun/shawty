@@ -5,7 +5,9 @@ const databaseFile = process.env.NODE_ENV === 'test' ? './backend/testdata.json'
 class DataBase { 
     constructor(){
         this.items = [];
-        const data = fs.readFile(databaseFile, 'utf8'); 
+        console.log(this.items);
+        const data = fs.readFileSync(databaseFile, 'utf8');
+        console.log(JSON.parse(data)); 
         this.items = JSON.parse(data);
     }
 
