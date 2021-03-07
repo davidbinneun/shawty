@@ -1,6 +1,6 @@
 # Shawty 🐫 URL Shortener
 
-A simple and responsive URL shortening service.
+An elegant and responsive URL shortening service.
 
 - [Fire up the demo](https://shawty.davidbinneun.repl.co/) at repl.it
 
