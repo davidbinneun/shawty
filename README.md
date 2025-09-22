@@ -2,7 +2,7 @@
 
 A simple and responsive URL shortening service.
 
-- [Fire up the demo](https://shawty.davidbinneun.repl.co/) at repl.it
+- [Fire up the demo](https://2df93fa0-df47-42da-852b-3e809a4f2799-00-2lkjrrmzsls3y.janeway.replit.dev/) at repl.it
 
 ## Features
 - Fully responsive design
